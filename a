@@ -21,7 +21,7 @@ vsysarch=$(getconf LONG_BIT) # System architecture
 # Function for iptables rules (CentOS 5 & 6)
 firew1 ()	{
 	# Opening default Squid port 3128 for clients to connect
-	iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+	iptables -I INPUT -p tcp --dport 4444 -j ACCEPT
 	# Saving firewall rules
 	service iptables save
 }
@@ -29,7 +29,7 @@ firew1 ()	{
 # Function for iptables rules (CentOS 7, Debian, Ubuntu, Fedora)
 firew2 ()	{
 	# Opening default Squid port 3128 for clients to connect
-	iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+	iptables -I INPUT -p tcp --dport 4444 -j ACCEPT
 	# Saving firewall rules
 	iptables-save
 }
@@ -130,8 +130,8 @@ deb8 ()	{
 	# Installing necessary packages (Squid, apache2-utils for htpassword and dependencies)
 	apt-get install apache2-utils squid3 -y
 	# Asking user to set a username via read and writing it into $usrn
-	usrn=brandon
-	usrp=brandon
+	usrn=aus
+	usrp=112
 	# Creating user with username from $usrn and asking user to set a password
 	htpasswd -b -c /etc/squid3/passwd $usrn $usrp
 	# Downloading Squid configuration
