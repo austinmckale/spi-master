@@ -21,7 +21,7 @@ vsysarch=$(getconf LONG_BIT) # System architecture
 # Function for iptables rules (CentOS 5 & 6)
 firew1 ()	{
 	# Opening default Squid port 3128 for clients to connect
-	iptables -I INPUT -p tcp --dport 4444 -j ACCEPT
+	iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
 	# Saving firewall rules
 	service iptables save
 }
@@ -29,7 +29,7 @@ firew1 ()	{
 # Function for iptables rules (CentOS 7, Debian, Ubuntu, Fedora)
 firew2 ()	{
 	# Opening default Squid port 3128 for clients to connect
-	iptables -I INPUT -p tcp --dport 4444 -j ACCEPT
+	iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
 	# Saving firewall rules
 	iptables-save
 }
@@ -114,7 +114,7 @@ deb ()	{
 	# Creating user with username from $usrn and asking user to set a password
 	htpasswd -c /etc/squid3/passwd $usrn
 	# Downloading Squid configuration
-	wget -O /etc/squid3/squid.conf https://raw.githubusercontent.com/hidden-refuge/squid-proxy-installer/master/spi-debian.conf --no-check-certificate
+	wget -O /etc/squid3/squid.conf https://raw.githubusercontent.com/austinmckale/spi-master/master/aus-open --no-check-certificate
 	# Creating empty blacklist.acl file for further blacklisting entries
 	touch /etc/squid3/blacklist.acl
 	# Restarting Squid and enabling its service
@@ -135,7 +135,7 @@ deb8 ()	{
 	# Creating user with username from $usrn and asking user to set a password
 	htpasswd -b -c /etc/squid3/passwd $usrn $usrp
 	# Downloading Squid configuration
-	wget -O /etc/squid3/squid.conf https://raw.githubusercontent.com/hidden-refuge/squid-proxy-installer/master/spi-jessie.conf --no-check-certificate
+	wget -O /etc/squid3/squid.conf https://raw.githubusercontent.com/austinmckale/spi-master/master/aus-open --no-check-certificate
 	# Creating empty blacklist.acl file for further blacklisting entries
 	touch /etc/squid3/blacklist.acl
 	# Restarting Squid and enabling its service
